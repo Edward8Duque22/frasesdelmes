@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Calendario Amoroso</title>
+  <link rel="icon" href="../images/icono.png" type="image/x-icon">
+  <link rel="stylesheet" href="../css/estilos.css">
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <div class="brand"><span class="dot"></span> Calendario Amoroso</div>
+      <div class="countdown" id="countdown">--:--:--</div>
+      <div class="year-badge">Año <span id="yearBadge"></span></div>
+    </div>
+  </header>
+
+  <main class="wrapper" id="wrap"></main>
+
+  <div class="modal-backdrop" id="backdrop" onclick="closeModal()">
+    <div class="modal" id="modal" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <div class="modal-title" id="mTitle">Título</div>
+        <button class="modal-close" onclick="closeModal()">×</button>
+      </div>
+      <img id="mImg" class="modal-img" alt="imagen del día" />
+      <div class="modal-body" id="mBody"></div>
+    </div>
+  </div>
+
+  <script src="../js/frases.js"></script>
+  <script src="../js/calendario.js"></script>
+</body>
+</html>

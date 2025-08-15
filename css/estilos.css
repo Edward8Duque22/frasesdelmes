@@ -1,0 +1,78 @@
+:root{
+  --bg:#0b0f1a;
+  --card:#111829;
+  --acc:#7c5cff;
+  --acc2:#00d1b2;
+  --text:#e8eefc;
+  --muted:#9fb0d0;
+  --danger:#ff5678;
+  --shadow: 0 10px 30px rgba(0,0,0,.35);
+}
+
+*{
+  box-sizing:border-box;
+}
+html,body{
+  height: auto;
+}
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji";
+  background: 
+    radial-gradient(1200px 800px at 20% -10%, #1a2440 0%, transparent 60%), 
+    radial-gradient(1000px 800px at 100% 0%, #14203a 0%, transparent 55%), 
+    var(--bg);
+  color:var(--text);
+}
+
+.header{ position:sticky; top:0; z-index:5; backdrop-filter:saturate(1.2) blur(8px); background:rgba(11,15,26,.6); border-bottom: 1px solid rgba(255,255,255,.08); }
+.header-inner{ max-width:1100px; margin:0 auto; padding:14px 18px; display:flex; align-items:center; gap:16px; justify-content:space-between; }
+.brand{display:flex; align-items:center; gap:12px; font-weight:700; letter-spacing:.4px}
+.brand .dot{width:10px; height:10px; border-radius:999px; background:linear-gradient(45deg,var(--acc),var(--acc2)); box-shadow:0 0 12px var(--acc)}
+.year-badge{padding:6px 10px; border:1px solid rgba(255,255,255,.1); border-radius:999px; font-size:12px; color:var(--muted)}
+.countdown{ font-variant-numeric: tabular-nums; background: linear-gradient(90deg, rgba(124,92,255,.18), rgba(0,209,178,.18)); border:1px solid rgba(255,255,255,.08); padding:8px 12px; border-radius:12px; box-shadow:var(--shadow); }
+
+.wrapper{max-width:1100px; margin:24px auto; padding:0 18px}
+.month-card{ background:linear-gradient(180deg, rgba(17,24,41,.9), rgba(17,24,41,.75)); border: 1px solid rgba(255,255,255,.06); border-radius:18px; box-shadow: var(--shadow); margin:16px 0; overflow:hidden; transform: translateY(8px); opacity:.0; animation: slideIn .6s ease forwards; }
+@keyframes slideIn{to{transform:translateY(0); opacity:1}}
+.month-header{ display:flex; align-items:center; justify-content:space-between; padding:14px 16px; background: rgba(124,92,255,.08); border-bottom:1px solid rgba(255,255,255,.06); }
+.month-name{font-weight:700; letter-spacing:.4px}
+.grid{ display:grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap:8px; padding:16px; }
+.cell, .dow{ aspect-ratio: 1 / 1; display:flex; align-items:center; justify-content:center; border-radius:14px; position:relative; isolation:isolate; }
+.dow{font-size:12px; color:var(--muted)}
+.cell{ border:1px solid rgba(255,255,255,.06); background: rgba(255,255,255,.02); transition: transform .15s ease, box-shadow .15s ease, background .2s ease, border .2s ease; cursor:pointer; }
+.cell:hover{ transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 20px rgba(0,0,0,.35); background: rgba(124,92,255,.10); border-color: rgba(124,92,255,.35) }
+.cell.locked{ cursor:not-allowed; opacity:.45; filter:saturate(.6) }
+.cell.weekend{ background: rgba(255,86,120,.06) }
+.cell.today{ border-color: var(--acc2); box-shadow: 0 0 0 3px rgba(0,209,178,.2) inset }
+.cell.today::after{ content:""; position:absolute; inset:auto auto 8px 50%; transform:translateX(-50%); width:8px; height:8px; border-radius:999px; background:var(--acc2); box-shadow:0 0 10px var(--acc2); }
+.cell .num{ font-weight:700 }
+.cell .preview-dot{ position:absolute; top:8px; right:8px; width:8px; height:8px; border-radius:999px; background: var(--acc); box-shadow: 0 0 8px var(--acc); }
+
+.tooltip{ position:absolute; z-index:10; pointer-events:none; padding:10px 12px; font-size:12px; max-width:220px; background: rgba(11,15,26,.9); border:1px solid rgba(255,255,255,.08); color:var(--text); border-radius:12px; box-shadow: var(--shadow); transform: translate(-50%, -120%); opacity:0; transition: opacity .12s ease, transform .12s ease; }
+/*.cell:hover .tooltip{ opacity:1; transform: translate(-50%, -130%) }*/
+.tooltip .t{ font-weight:700; margin-bottom:4px; color:#fff }
+.tooltip .p{ color:var(--muted) }
+
+.modal-backdrop{ position:fixed; inset:0; background:rgba(5,8,15,.7); backdrop-filter: blur(6px); display:none; align-items:center; justify-content:center; z-index:20; }
+.modal{ width:min(92vw, 720px); background: linear-gradient(180deg, #0f1425, #0d1220); border:1px solid rgba(255,255,255,.08); border-radius:20px; overflow:hidden; transform: translateY(20px) scale(.98); opacity:0; animation: none; }
+.modal.open{ animation: modalIn .25s ease forwards }
+@keyframes modalIn{to{transform: translateY(0) scale(1); opacity:1}}
+.modal-header{ padding:14px 16px; display:flex; align-items:center; justify-content:space-between; background: rgba(124,92,255,.12); border-bottom:1px solid rgba(255,255,255,.06); }
+.modal-title{font-weight:800}
+.modal-close{ border:0; background:transparent; color:var(--text); font-size:20px; cursor:pointer; opacity:.8; }
+.modal-img{ width:100%; max-height:360px; object-fit:cover; display:block }
+.modal-body{ padding:16px; color:var(--muted); line-height:1.6 }
+
+@media (max-width:700px){
+  .grid{ gap:6px; padding:12px }
+  .cell, .dow{ border-radius:12px }
+  .header-inner{
+    flex-direction: column;
+    gap: 8px;
+  }
+  .countdown{
+    font-size: 12px;
+    padding: 6px 8px;
+  }
+}
