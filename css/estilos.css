@@ -40,10 +40,10 @@ body{
 .grid{ display:grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap:8px; padding:16px; }
 .cell, .dow{ aspect-ratio: 1 / 1; display:flex; align-items:center; justify-content:center; border-radius:14px; position:relative; isolation:isolate; }
 .dow{font-size:12px; color:var(--muted)}
-.cell{ border:1px solid rgba(255,255,255,.06); background: rgba(255,255,255,.02); transition: transform .15s ease, box-shadow .15s ease, background .2s ease, border .2s ease; cursor:pointer; }
+.cell{ border:1px solid rgba(255,255,255,.06); background: rgba(255,255,255,.5); transition: transform .15s ease, box-shadow .15s ease, background .2s ease, border .2s ease; cursor:pointer; }
 .cell:hover{ transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 20px rgba(0,0,0,.35); background: rgba(124,92,255,.10); border-color: rgba(124,92,255,.35) }
 .cell.locked{ cursor:not-allowed; opacity:.45; filter:saturate(.6) }
-.cell.weekend{ background: rgba(255,86,120,.06) }
+.cell.weekend{ background: rgba(255,86,120,.2) }
 .cell.today{ border-color: var(--acc2); box-shadow: 0 0 0 3px rgba(0,209,178,.2) inset }
 .cell.today::after{ content:""; position:absolute; inset:auto auto 8px 50%; transform:translateX(-50%); width:8px; height:8px; border-radius:999px; background:var(--acc2); box-shadow:0 0 10px var(--acc2); }
 .cell .num{ font-weight:700 }
